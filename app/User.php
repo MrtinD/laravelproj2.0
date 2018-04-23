@@ -30,10 +30,10 @@ class User extends Authenticatable
 
     
     public function comments(){
-        $this->hasMany('App\Comment','user_id');
+    return $this->hasMany(Comment::class,'user_id');
     }
 
     public function posts(){
-        $this->hasMany('App\Posts','user_id');
+        return $this->hasMany(Post::class,'user_id');
     }
 }

@@ -26,7 +26,6 @@ Route::get('/logout','LoginController@destroy');
 Route::get('/register','RegisterController@create');
 Route::post('/register/account','RegisterController@store');
 
-
 //Post resource routing
 //index(all posts) create(show form for creating) store(create the post) show(single post) edit(single post) update(the post) delete(the post)
 Route::get('/','PostController@index');

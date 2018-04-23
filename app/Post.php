@@ -9,10 +9,11 @@ class Post extends Model
     protected $fillable = ['title','body'];
 
     public function comments(){
-        $this->hasMany('App/Comment');
+        return $this->hasMany(Comment::class,'post_id','id');
     }
 
     public function user(){
-        $this->hasOne('App/User');
+        //$this->hasOne('App\User');
+        return $this->hasOne(User::class,'id');
     }
 }

@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     //index create store show edit update delete
     public function __construct(){
-        //$this->middleware('auth');
+        $this->middleware('auth')->except(['index','show']);
     }
     /**
      * Display a listing of the resources.

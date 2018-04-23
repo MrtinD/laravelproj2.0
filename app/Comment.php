@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public function posts(){
-        $this->hasOne('App\Post','post_id');
+    protected $fillable=['body'];
+
+    public function post(){
+        return $this->hasOne(Post::class,'id','post_id');
     }
 
-    public function users(){
-        $this->hasOne('App\User','id');
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
     }
 }
