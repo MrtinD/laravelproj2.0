@@ -14,53 +14,55 @@
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.1/examples/jumbotron/jumbotron.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/4.1/examples/floating-labels/floating-labels.css" rel="stylesheet">
+    {{-- <link href="https://getbootstrap.com/docs/4.1/examples/floating-labels/floating-labels.css" rel="stylesheet"> --}}
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        @if(Auth::user())
+            <a class="nav-link" href="\">{{Auth::user()->name}}</a>
+        @else
+        <a class="navbar-brand" href="\">MyProject</a>
+        @endif
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
             aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">Dropdown</a>
+                @if(Auth::user())
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Options</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                      <a class="dropdown-item" href="\posts\create">Create Post</a>
+                      <a class="dropdown-item" href="{{$_SERVER['REQUEST_URI']}}logout">Logout</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li> --}}
-            </ul>
+                  </li>
+                @endif
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/posts">Posts <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
             @if(Auth::user())
-            <div class="form-inline my-2 my-lg-0">
-                <h5 class="navbar-brand">{{Auth::user()->name}}</h5>
-            </div>
+                <div class="form-inline my-2 my-lg-0">
+                <a class="navbar-brand">{{Auth::user()->name}}</a>
+                </div>
             @else
-            <div class="form-inline my-2 my-lg-0">
-                <a class="navbar-brand" href="\login">Login</a>
-                <a class="navbar-brand" href="\register">Register</a>
-            </div>
+                <div class="form-inline my-2 my-lg-0">
+                    <a class="navbar-brand" href="\login">Login</a>
+                    <a class="navbar-brand" href="\register">Register</a>
+                </div>
             @endif
         </div>
     </nav>
+
     @yield('content')
 
+
+    @include('inc.postscript')
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
 </body>
 
 </html>

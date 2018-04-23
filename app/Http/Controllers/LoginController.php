@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
 
+
+    function __construct(){
+        $this->middleware('guest',['except'=>'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -81,8 +85,9 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        auth()->logout();
+        return redirect('/');
     }
 }

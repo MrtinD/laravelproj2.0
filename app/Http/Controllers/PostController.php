@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("page/post/createpost");
     }
 
     /**
@@ -37,11 +37,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         
-        // $post = new Post;
-        // $post->name;
+        $post=new \App\Post;
+        $post->body=$request->input('asdbody');
+        $post->title=$request->input('asdtitle');
+        $post->user_id=auth()->user()->id;
+        $post->save();
+        return redirect('/');
     }
 
     /**

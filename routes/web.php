@@ -18,7 +18,7 @@
 //Login Controller
 Route::get('/login','LoginController@index');
 Route::post('/login/try','LoginController@store');
-
+Route::get('/logout','LoginController@destroy');
 
 
 //Auth::routes();
