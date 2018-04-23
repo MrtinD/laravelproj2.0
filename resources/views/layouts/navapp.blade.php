@@ -36,19 +36,16 @@
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Options</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                       <a class="dropdown-item" href="\posts\create">Create Post</a>
-                      <a class="dropdown-item" href="{{$_SERVER['REQUEST_URI']}}logout">Logout</a>
+                      <a class="dropdown-item" href="/logout">Logout</a>
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                   </li>
                 @endif
-                    <li class="nav-item active">
+                    {{-- <li class="nav-item active">
                         <a class="nav-link" href="/posts">Posts <span class="sr-only">(current)</span></a>
-                    </li>
+                    </li> --}}
                 </ul>
             @if(Auth::user())
-                <div class="form-inline my-2 my-lg-0">
-                <a class="navbar-brand">{{Auth::user()->name}}</a>
-                </div>
             @else
                 <div class="form-inline my-2 my-lg-0">
                     <a class="navbar-brand" href="\login">Login</a>
