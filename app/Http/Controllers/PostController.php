@@ -12,13 +12,18 @@ class PostController extends Controller
         //$this->middleware('auth');
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resources.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index()
     {
-        return view('page\post\posts');
+
+        $posts = Post::all();
+        return view('page\post\posts',compact('posts'));
     }
 
     /**
@@ -28,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("page/post/createpost");
+    
+        return view("page.post.createpost");
     }
 
     /**
@@ -39,7 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $post=new \App\Post;
         $post->body=$request->input('asdbody');
         $post->title=$request->input('asdtitle');
@@ -54,9 +60,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::where('id',$id)->first();
+        return view('page.post.post',compact('post'));
     }
 
     /**
@@ -91,5 +98,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function spectouser($userid){
+        $userposts = \App\Post::where('user_id',$userid)->get();
+        return view('page\post\myposts',compact('userposts'));
     }
 }

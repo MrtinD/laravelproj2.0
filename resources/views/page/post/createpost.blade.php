@@ -3,7 +3,6 @@
 
 <div class="jumbotron">
     <div class="container">
-
         <form action="/posts/create/thepost" method="POST">
             @csrf
             <div class="form-group">
@@ -17,11 +16,8 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Publish</button>
             </div>
-
         </form>
-
     </div>
-
-
 </div>
+
 @endsection

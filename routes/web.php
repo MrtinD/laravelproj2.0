@@ -33,5 +33,6 @@ Route::get('/','PostController@index');
 Route::get('/posts/create','PostController@create');
 Route::post('/posts/create/thepost','PostController@store');
 Route::get('/posts/single/{id}','PostController@show');
+Route::get('/posts/{userid}','PostController@spectouser');
 
 
