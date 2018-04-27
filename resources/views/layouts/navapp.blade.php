@@ -63,7 +63,7 @@
 
     @include('inc.postscript')
     <footer class="container">
-        <p>&copy; Company 2017-2018</p>
+        <p>&copy; TheIntern 2018</p>
     </footer>
 </body>
 
