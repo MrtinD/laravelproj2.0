@@ -29,6 +29,7 @@
                 </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
+                
                 @if(Auth::user())
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
@@ -39,7 +40,8 @@
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
-                @endif {{--
+                @endif
+                {{--
                 <li class="nav-item active">
                     <a class="nav-link" href="/posts">Posts <span class="sr-only">(current)</span></a>
                 </li> --}}
@@ -50,6 +52,10 @@
                 <a class="navbar-brand" href="\register">Register</a>
             </div>
             @endif
+            <form class="form-inline my-2 my-lg-0 align-auto" method="GET" action="\search">
+                    <input name = ""class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> 
         </div>
     </nav>
 
