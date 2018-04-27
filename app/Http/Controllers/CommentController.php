@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
+    // public function __construct(){
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +39,10 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'comment_body' => 'required',
+        ]);
+
         $comment = new Comment;
         $comment->content = $request->input('comment_body');
         $comment->user_id = $request->input('user_id');
@@ -62,9 +70,10 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($commentid)
     {
-        //
+        $thecomment = Comment::with('id',$id)->get();
+        return view('page.post.editpost')->with('thecomment',$thecomment);
     }
 
     /**

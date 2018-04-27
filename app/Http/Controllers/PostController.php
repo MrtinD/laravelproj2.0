@@ -72,9 +72,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($postid)
     {
-        //
+        $editpost = Post::where('id',$postid)->get();
+        return view('page.post.editpost')->with('editpost',$editpost);
     }
 
     /**
@@ -84,9 +85,17 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
-    {
-        //
+    public function update($postid,Request $request){
+        $this->validate($request,[
+            'asdbody'=>'required',
+            'asdtitle'=>'required'
+        ]);
+        $updatedpost = Post::where('id',$postid)->first();
+        $updatedpost->body = $request->input('asdbody');
+        $updatedpost->title = $request->input('asdtitle');
+        $updatedpost->updated_at = now();
+        $updatedpost->save();
+        return redirect('/');
     }
 
     /**
@@ -95,9 +104,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($postid)
     {
-        //
+        $delpost = Post::where('id',$postid)->first();
+        $delpost->delete();
+        return redirect()->back();
     }
 
     public function spectouser($userid){

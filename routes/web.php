@@ -35,5 +35,7 @@ Route::get('/posts/single/{id}','PostController@show');
 Route::get('/posts/{userid}','PostController@spectouser');
 
 Route::post('/comment','CommentController@store');
-
+Route::get('/edit/{postid}','PostController@edit');
+Route::post('/edit/{postid}','PostController@update');
+Route::get('/delete/{postid}','PostController@destroy');
 

@@ -15,24 +15,30 @@
           <small>By : {{$post->comment->user->name}}</small>
         @endforeach
       @endif
+      <hr>
       <p>
         <a class="btn btn-primary btn-lg" href="/posts/single/{{$post->id}}" role="button">Learn more &raquo;</a>
       </p>
       @if(Auth::user())
-        <form action="/comment" method="POST">
+        @if(Auth::user()->id==$post->user->id)
+          <a href="/edit/{{$post->id}}"><p>Edin post</p></a>
+          <a href="/delete/{{$post->id}}"><p>Delete post</p></a>
+        @endif
+      @endif
+      @if(Auth::user())
+        <form action="/comment" method="POST" class="form-group">
           @csrf
-          <textarea name="comment_body" id="" cols="45" rows="5"></textarea>
+          <textarea class="form-control" name="comment_body" id="" cols="45" rows="5"></textarea>
           <input type="hidden" name="user_id" id="" value="{{Auth::user()->id}}">
           <input type="hidden" name="post_id" id="" value="{{$post->id}}">
           <div>
-        <button class="btn btn-primary btn-lg" type="submit">Commit</button>
+        <button class="btn btn-primary btn-lg" type="submit">Comment</button>
       </div>
       </form>
       @endif  
   </div>
   </div>
   <!-- /container -->
-
 </main>
 @endforeach
 @endsection
